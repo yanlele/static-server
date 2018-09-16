@@ -1,0 +1,19 @@
+{
+  "name": "koa2-server",
+  "version": "1.0.0",
+  "description": "NodeJS Static Web Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanlele/static-server.git"
+  },
+  "author": "yanle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yanlele/static-server/issues"
+  },
+  "homepage": "https://github.com/yanlele/static-server#readme"
+}
