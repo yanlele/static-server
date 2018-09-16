@@ -4,10 +4,11 @@ const views = require('koa-views');
 const json = require('koa-json');
 const onError = require('koa-onerror');
 const bodyParser = require('koa-bodyparser');
-const logger = require('koa-logger')
+const logger = require('./modules/koaLog');
 const session = require('koa-session-minimal');
 const mysqlStore = require('koa-mysql-session');
 const config = require('./config');
+const path = require('path');
 
 const routing = require('./routers/index');
 
@@ -35,7 +36,10 @@ app.use(bodyParser({
 app.use(json());
 
 // 加载日志
-app.use(logger());
+app.use(logger({
+    defaultPath: path.resolve(__dirname, 'logs'),
+    applicationName: 'app'
+}));
 
 
 // 设置静态模板目录
@@ -51,7 +55,7 @@ app.use(async(ctx, next) => {
     const start = new Date();
     await next();
     const ms = new Date() - start;
-    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+    ctx.logger.info(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
 // 装在路由
@@ -59,7 +63,7 @@ routing(app);
 
 // 错误处理
 app.on('error', (err, ctx) => {
-    console.error('server error', err, ctx)
+    ctx.logger.error('server error', err, ctx)
 });
 
 module.exports = app;

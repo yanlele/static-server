@@ -11,7 +11,8 @@ router.get('/', (ctx) => {
         name: 'yanle',
         age: 35
     };
-    console.log(JSON.stringify(returnObject));
+    ctx.logger.debug('return object', JSON.stringify(returnObject));
+    ctx.logger.debug(JSON.stringify(ctx.query));
     ctx.body = returnObject;
 });
 

@@ -32,7 +32,9 @@
     "koa-views": "^5.2.1",
     "mysql": "^2.16.0",
     "pino-http": "^4.0.0",
-    "validator": "^9.2.0"
+    "validator": "^9.2.0",
+    "chalk": "^2.4.1",
+    "moment": "^2.22.2"
   },
   "devDependencies": {},
   "bugs": {
