@@ -4,7 +4,7 @@ const views = require('koa-views');
 const json = require('koa-json');
 const onError = require('koa-onerror');
 const bodyParser = require('koa-bodyparser');
-const koaJsonLogger = require('koa-json-logger');
+const logger = require('koa-logger')
 const session = require('koa-session-minimal');
 const mysqlStore = require('koa-mysql-session');
 const config = require('./config');
@@ -35,11 +35,7 @@ app.use(bodyParser({
 app.use(json());
 
 // 加载日志
-app.use(koaJsonLogger({
-    name: 'myCoolApp',
-    path: '../logs',
-    jsonapi: true
-}));
+app.use(logger());
 
 
 // 设置静态模板目录
@@ -55,7 +51,7 @@ app.use(async(ctx, next) => {
     const start = new Date();
     await next();
     const ms = new Date() - start;
-    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
 // 装在路由
