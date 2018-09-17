@@ -24,7 +24,7 @@
     "koa-json-logger": "^1.0.2",
     "koa-log4": "^2.3.0",
     "koa-logger": "^2.0.1",
-    "koa-logs-middleware": "0.0.1",
+    "koa-logs-middleware": "0.0.3",
     "koa-mysql-session": "^0.0.2",
     "koa-onerror": "^1.2.1",
     "koa-router": "^7.1.1",

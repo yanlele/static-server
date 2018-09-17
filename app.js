@@ -4,11 +4,12 @@ const views = require('koa-views');
 const json = require('koa-json');
 const onError = require('koa-onerror');
 const bodyParser = require('koa-bodyparser');
-const logger = require('koa-logs-middleware');
+const logger = require('./modules/koaLog');
 const session = require('koa-session-minimal');
 const mysqlStore = require('koa-mysql-session');
 const config = require('./config');
 const path = require('path');
+const pkg = require('./package.json');
 
 const routing = require('./routers/index');
 
