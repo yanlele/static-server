@@ -24,6 +24,7 @@
     "koa-json-logger": "^1.0.2",
     "koa-log4": "^2.3.0",
     "koa-logger": "^2.0.1",
+    "koa-logs-middleware": "0.0.1",
     "koa-mysql-session": "^0.0.2",
     "koa-onerror": "^1.2.1",
     "koa-router": "^7.1.1",
@@ -32,9 +33,7 @@
     "koa-views": "^5.2.1",
     "mysql": "^2.16.0",
     "pino-http": "^4.0.0",
-    "validator": "^9.2.0",
-    "chalk": "^2.4.1",
-    "moment": "^2.22.2"
+    "validator": "^9.2.0"
   },
   "devDependencies": {},
   "bugs": {
