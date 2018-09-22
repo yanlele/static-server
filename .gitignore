@@ -59,6 +59,7 @@ typings/
 
 # other
 .idea/
+dist/
 package-lock.json
 
 
