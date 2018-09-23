@@ -8,7 +8,7 @@ module.exports = {
      * @param  {obejct} ctx 上下文对象
      */
     async signIn(ctx) {
-        let formData = ctx.request.body
+        let formData = ctx.request.body;
         let result = {
             success: false,
             message: '',
@@ -21,30 +21,27 @@ module.exports = {
         console.log(userResult);
 
         if (userResult) {
-            if (formData.userName === userResult.name) {
+            if (formData.name === userResult.name) {
                 result.success = true
             } else {
-                result.message = userCode.FAIL_USER_NAME_OR_PASSWORD_ERROR
+                result.message = userCode.FAIL_USER_NAME_OR_PASSWORD_ERROR;
                 result.code = 'FAIL_USER_NAME_OR_PASSWORD_ERROR'
             }
         } else {
-            result.code = 'FAIL_USER_NO_EXIST',
-                result.message = userCode.FAIL_USER_NO_EXIST
+            result.code = 'FAIL_USER_NO_EXIST';
+            result.message = userCode.FAIL_USER_NO_EXIST
         }
 
         console.log(formData);
         console.log(result.success);
 
-        if (formData.source === 'form' && result.success === true) {
-            let session = ctx.session
-            session.isLogin = true
-            session.userName = userResult.name
-            session.userId = userResult.id
-
-            ctx.body = result
-        } else {
-            ctx.body = result
+        if (result.success === true) {
+            let session = ctx.session;
+            session.isLogin = true;
+            session.userName = userResult.name;
+            session.userId = userResult.id;
         }
+        ctx.body = result;
     },
 
     /**
@@ -90,7 +87,7 @@ module.exports = {
         let userResult = await userInfoService.create({
             email: formData.email,
             password: formData.password,
-            name: formData.userName,
+            name: formData.name,
             level: 1,
         });
 

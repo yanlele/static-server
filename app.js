@@ -12,7 +12,7 @@ const path = require('path');
 const pkg = require('./package.json');
 
 const routing = require('./routers/index');
-
+const THIRTY_MINTUES = 30 * 60 * 1000;
 // 处理错误
 onError(app);
 
@@ -27,7 +27,10 @@ const sessionMysqlConfig= {
 // 配置session 中间件
 app.use(session({
     key: 'USER_SID',
-    store: new mysqlStore(sessionMysqlConfig)
+    store: new mysqlStore(sessionMysqlConfig),
+    cookie: {
+        maxage: THIRTY_MINTUES
+    }
 }));
 
 // 解析body

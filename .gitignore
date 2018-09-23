@@ -62,5 +62,6 @@ typings/
 dist/
 package-lock.json
 yarn.lock
+views/
 
 

@@ -4,7 +4,7 @@
 
 const validator = require('validator')
 const userModel = require('./../models/user-info')
-const userCode = require('./../codes/user')
+const userCode = require('./../enums/user')
 
 const user = {
 
@@ -39,7 +39,7 @@ const user = {
     async signIn(formData) {
         let resultData = await userModel.getOneByUserNameAndPassword({
             'password': formData.password,
-            'name': formData.userName
+            'name': formData.name
         });
         return resultData
     },
@@ -56,8 +56,7 @@ const user = {
         let userInfo = {
             // id: resultData.id,
             email: resultData.email,
-            userName: resultData.name,
-            detailInfo: resultData.detail_info,
+            name: resultData.name,
             createTime: resultData.create_time
         }
         return userInfo
