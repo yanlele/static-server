@@ -24,7 +24,7 @@
     "koa-json-logger": "^1.0.2",
     "koa-log4": "^2.3.0",
     "koa-logger": "^2.0.1",
-    "koa-logs-middleware": "0.0.4",
+    "koa-logs-middleware": "^0.1.0",
     "koa-mysql-session": "^0.0.2",
     "koa-onerror": "^1.2.1",
     "koa-router": "^7.1.1",
@@ -35,7 +35,12 @@
     "pino-http": "^4.0.0",
     "validator": "^9.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "supertest": "^3.3.0"
+  },
   "bugs": {
     "url": "https://github.com/yanlele/static-server/issues"
   },

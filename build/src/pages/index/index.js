@@ -9,7 +9,6 @@ export default function () {
                 <Card
                     title="请登录"
                     style={{ width: '100%',
-                        background: 'inherit'
                     }}
                 >
                     <p>Card content</p>

@@ -51,21 +51,16 @@ app.use(views(__dirname + '/views'),  {
     extension: 'html'
 });
 
-// 开发输入日志
+/*// 开发输入日志
 app.use(async(ctx, next) => {
     const start = new Date();
     await next();
     const ms = new Date() - start;
     ctx.logger.info(`${ctx.method} ${ctx.url} - ${ms}ms`);
-});
+});*/
 
 // 装在路由
 routing(app);
-
-// 错误处理
-app.on('error', (err, ctx) => {
-    ctx.logger.error('server error', err, ctx)
-});
 
 module.exports = app;
 

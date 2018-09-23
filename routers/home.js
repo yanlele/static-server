@@ -11,8 +11,6 @@ router.get('/', (ctx) => {
         name: 'yanle',
         age: 35
     };
-    // ctx.logger.debug('request Param: ',JSON.stringify(ctx.query));
-    // ctx.logger.debug('response: ', JSON.stringify(returnObject));
     ctx.logger.info('koa-logs-middleware');
     ctx.logger.error('koa-logs-middleware');
     ctx.logger.success('koa-logs-middleware');

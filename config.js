@@ -1,9 +1,9 @@
 const config = {
     port: 3001,
     database: {
-        DATABASE: '001_koa_demo',
-        USERNAME: 'root',
-        PASSWORD: '53693750',
+        DATABASE: 'medical_medicine',
+        USERNAME: 'yanle',
+        PASSWORD: '123456',
         PORT: '3306',
         HOST: 'localhost'
     }
