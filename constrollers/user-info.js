@@ -16,6 +16,7 @@ module.exports = {
             code: ''
         };
 
+        // 第一步，查询数据库中有没有当前的用户
         let userResult = await userInfoService.signIn(formData);
         console.log(userResult);
 
@@ -40,7 +41,7 @@ module.exports = {
             session.userName = userResult.name
             session.userId = userResult.id
 
-            ctx.redirect('/work')
+            ctx.body = result
         } else {
             ctx.body = result
         }
@@ -61,17 +62,19 @@ module.exports = {
 
         let validateResult = userInfoService.validatorSignUp(formData)
 
+        // 如果注册信息不合规 直接退出注册
         if (validateResult.success === false) {
             result = validateResult
             ctx.body = result
             return
         }
 
+        // 验证信息是否存在
         let existOne = await userInfoService.getExistOne(formData)
         console.log(existOne)
 
         if (existOne) {
-            if (existOne.name === formData.userName) {
+            if (existOne.name === formData.name) {
                 result.message = userCode.FAIL_USER_NAME_IS_EXIST
                 ctx.body = result
                 return
@@ -88,7 +91,6 @@ module.exports = {
             email: formData.email,
             password: formData.password,
             name: formData.userName,
-            create_time: new Date().getTime(),
             level: 1,
         });
 

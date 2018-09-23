@@ -19,8 +19,8 @@ const user = {
    */
   async getExistOne(options ) {
     let _sql = `
-    SELECT * from user_info
-      where email="${dbUtils.escape(options.email)}" or name="${options.name}"
+    SELECT * from user
+      where email="${dbUtils.escape(options.email)}" or name="${dbUtils.escape(options.name)}"
       limit 1`;
     let result = await dbUtils.query( _sql )
     if ( Array.isArray(result) && result.length > 0 ) {

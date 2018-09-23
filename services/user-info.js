@@ -26,7 +26,7 @@ const user = {
     async getExistOne(formData) {
         let resultData = await userModel.getExistOne({
             'email': formData.email,
-            'name': formData.userName
+            'name': formData.name
         })
         return resultData
     },
@@ -40,7 +40,7 @@ const user = {
         let resultData = await userModel.getOneByUserNameAndPassword({
             'password': formData.password,
             'name': formData.userName
-        })
+        });
         return resultData
     },
 
@@ -75,7 +75,7 @@ const user = {
             message: '',
         }
 
-        if (/[a-z0-9\_\-]{6,16}/.test(userInfo.userName) === false) {
+        if (/[a-z0-9\_\-]{6,16}/.test(userInfo.name) === false) {
             result.message = userCode.ERROR_USER_NAME
             return result
         }

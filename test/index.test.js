@@ -12,8 +12,8 @@ describe('koa service', function () {
             .expect(200)
             .end((err, res) => {
                 console.log(res.body);
-                expect(res.body).is.a.string;
+                expect(res.body).is.a('object');
                 done();
             })
     });
-})
+});
