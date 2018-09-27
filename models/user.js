@@ -16,6 +16,11 @@ const user = {
         let result  = await query(sql, [userInfo, username, password]);
         result = checkModelResult(result);
         return result;
+    },
+
+    async insertUserInfo(username, password, email) {
+        let sql = `insert into mmall_user set ?`;
+        return await query(sql, {userName, password, email});
     }
 };
 
