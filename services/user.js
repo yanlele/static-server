@@ -23,5 +23,7 @@ module.exports = {
         if(!userInfo) {
             return serverResponse.createErrorMessage('密码错误');
         }
+
+        return userInfo;
     }
 };
