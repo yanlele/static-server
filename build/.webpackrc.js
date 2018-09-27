@@ -1,10 +1,10 @@
 export default {
-    /*"publicPath": "/static/",
+    // "publicPath": "/static/",
     "proxy": {
         "/api": {
-            "target": "http://jsonplaceholder.typicode.com/",
+            "target": "127.0.0.1:3000",
             "changeOrigin": true,
             "pathRewrite": { "^/api" : "" }
         }
-    },*/
+    },
 }

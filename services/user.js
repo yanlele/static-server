@@ -50,9 +50,10 @@ class UserService {
 
         // 存入数据库
         let responseCount =await userModel.insertUserInfo(username, password, email);
-        if(responseCount > 0) {
+        if(responseCount.affectedRows > 0) {
             return serverResponse.createSuccessMessage('用户注册成功');
         }
+        return serverResponse.createErrorMessage("注册失败");
     }
 }
 

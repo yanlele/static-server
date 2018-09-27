@@ -20,7 +20,13 @@ const user = {
 
     async insertUserInfo(username, password, email) {
         let sql = `insert into mmall_user set ?`;
-        return await query(sql, {username, password, email});
+        let param = {username, password, email};
+        Object.assign(param, {
+            role: 1,
+            update_time: new Date(),
+            create_time: new Date()
+        });
+        return await query(sql, param);
     }
 };
 
