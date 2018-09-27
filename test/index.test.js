@@ -1,6 +1,7 @@
-const userTest = require('./user.test');
-
+const test = require('./test');
+const UserController = require('./user.test');
 
 describe('koa service', function () {
-    userTest();
+    // test();
+    UserController();
 });

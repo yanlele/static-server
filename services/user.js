@@ -29,6 +29,15 @@ class UserService {
     }
 
     static async signUp(username, password, confirmPassword, email) {
+        if(!username) {
+            return serverResponse.createErrorMessage('没有传入用户名');
+        }
+        if(!password) {
+            return serverResponse.createErrorMessage('没有传入密码');
+        }
+        if(!confirmPassword) {
+            return serverResponse.createErrorMessage('没有传入确认密码');
+        }
         if(password!==confirmPassword) {
             return serverResponse.createErrorMessage('密码和确认密码不一致');
         }
