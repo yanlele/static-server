@@ -29,8 +29,6 @@ class Index extends Component {
                             }}
                         >
                             <p>Card content</p>
-                            <p>Card content</p>
-                            <p>Card content</p>
                         </Card>
                     </Col>
                 </Row>
