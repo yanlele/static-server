@@ -119,20 +119,6 @@ export const protocol = window.location.protocol;
 export const uploadSize = 2 * 1024 * 1024; //最大上传文件大小(KB)
 // 上传地址
 export const uploadUrl = protocol === 'https:' ? 'https://up.qbox.me' : 'http://upload.qiniu.com';
-// 上传token地址
-export const tokenUri = $app.getAttribute('data-upload-token');
-
-// app名称
-export const appName = $app.getAttribute('data-app-name');
-
-// bossr地址
-export const bossr = $app.getAttribute('data-bossr');
-
-// 审核系统地址
-export const auditURI = $app.getAttribute('data-audit');
 
 // 简介的最长数据
 export const simpleListSize = 3;
-
-//baseURI
-export const baseURI = $app.getAttribute('data-base');

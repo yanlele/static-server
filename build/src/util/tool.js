@@ -1,9 +1,6 @@
-import {pathPrefix, uploadSize, tokenUri, appName, protocol, auditURI, $app} from './const';
-import {fetch} from './api';
+import {pathPrefix, uploadSize,  protocol} from './const';
 
 let diff = 0;
-const baseURI = $app.getAttribute('data-base');
-const runtime = $app.getAttribute('data-runtime');
 
 //日志方法
 export const log = window.console;
@@ -137,14 +134,14 @@ export function getCurDate(timediff) {
     return new Date(new Date().getTime() + diff - timediff);
 }
 
-export function getProjectUrl(type) {
+/*export function getProjectUrl(type) {
     const args = Array.prototype.slice.call(arguments, 1);
     switch(type) {
     case 'self':
         if(runtime === 'dev') return `${args[0]}`;
         return `${protocol}//url`;
     }
-}
+}*/
 
 
 // 七牛上传相关方法
@@ -186,7 +183,7 @@ export function getUploadToken(file, option) {
  * @param  {Object} file 文件对象或者key值
  * @return {String}      文件预览地址
  */
-export function getUploadDownloadPath(file) {
+/*export function getUploadDownloadPath(file) {
     let key;
     if(typeof file === 'string') {
         key = file;
@@ -194,14 +191,14 @@ export function getUploadDownloadPath(file) {
         key = file.response.data.key;
     }
     return `${tokenUri}/redirect?key=${encodeURIComponent(key)}`;
-}
+}*/
 
 /**
  * 获取上传文件信息
  * @param  {Object} file 文件对象
  * @return {Object}      文件信息,参照http://zbjrms.t10.zbjdev.com/resource/getDownloadParamJsonp?key=default/default/test.txt/origine/90236886-0a4b-47c1-9fc5-59466017ce2d&jsonpCallback=test
  */
-export function getUploadDownloadInfo(file) {
+/*export function getUploadDownloadInfo(file) {
     return fetch('upload-file-info', {
         key: file.response.data.key
     }, 'jsonp', {
@@ -213,13 +210,13 @@ export function getUploadDownloadInfo(file) {
             }
             return Promise.reject(new Error(data.description));
         });
-}
+}*/
 
 /**
  * 更新boss页面url地址
  *
  * @param {*} url 更新后的地址
  */
-export function updateHistory(url) {
+/*export function updateHistory(url) {
     if(runtime !== 'dev') window.top.postMessage('updateHistory:::' + encodeURIComponent(url), `${protocol}//boss.${baseURI}`);
-}
+}*/
