@@ -40,10 +40,10 @@ app.use(bodyParser({
 app.use(json());
 
 // 加载日志
-/*app.use(logger({
+app.use(logger({
     defaultPath: path.resolve(__dirname, 'logs'),
     applicationName: 'app'
-}));*/
+}));
 
 
 // 设置静态模板目录

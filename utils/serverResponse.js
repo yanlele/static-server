@@ -8,7 +8,7 @@ let defaultError = {
 
 module.exports = {
     createSuccessMessage(message, data) {
-        if(message) {
+        if(message && !data) {
             return Object.assign(defaultResponse, {
                 message
             })
@@ -28,7 +28,7 @@ module.exports = {
     },
 
     createErrorMessage(message, data) {
-        if(message) {
+        if(message && !data) {
             return Object.assign(defaultError, {
                 message
             })
