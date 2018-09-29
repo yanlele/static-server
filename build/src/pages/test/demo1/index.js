@@ -26,12 +26,12 @@ export default class Index extends React.Component {
                     Toggle
                 </button>
 
-                <Motion style={{x: spring(this.state.open ? 400 : 0)}}>
-                    {({x}) =>
+                <Motion style={{x: spring(this.state.open ? 400 : 0), y: spring(this.state.open ? 400 : 0)}}>
+                    {({x, y}) =>
                         <div className={`${style.demo0} ${style.demo0_box}`}>
                             <div className={style.demo0_block} style={{
                                 WebkitTransform: `translate3d(${x}px, 0, 0)`,
-                                transform: `translate3d(${x}px, 0, 0)`,
+                                transform: `translate3d(${x}px, ${y}px, 0)`,
                             }} />
                         </div>
                     }
