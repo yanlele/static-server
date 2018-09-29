@@ -10,7 +10,8 @@ export function signIn(url, options, type) {
     let query = Object.assign({}, methodObj, {
         method: type,
         data: options,
-        params: options
+        params: options,
+        url: url
     });
     return axios(query);
 }

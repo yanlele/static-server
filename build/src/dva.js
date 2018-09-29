@@ -1,11 +1,10 @@
-
 export default {
-  config() {
-    return {
-      onError(err) {
-        err.preventDefault();
-        console.error(err.message);
-      },
-    };
-  },
-}
+    config() {
+        return {
+            onError(err) {
+                err.preventDefault();
+                window.console.error(err.message);
+            },
+        };
+    },
+};
