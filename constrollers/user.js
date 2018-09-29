@@ -1,3 +1,4 @@
+const {isObjEmpty} = require('../build/src/util/tool');
 const userService = require('./../services/user');
 const userCode = require('./../enums/user');
 const serverResponse = require('./../utils/serverResponse');
@@ -33,11 +34,11 @@ module.exports = {
     async getUserInfo(ctx) {
         let currentUser = ctx.session;
         let response;
-        if(currentUser) {
+        if(isObjEmpty(currentUser)) {
             response = serverResponse.createSuccessMessage('', currentUser);
-            return response;
+            return ctx.body = response;
         }
         response = serverResponse.createErrorMessage('登录事变或者没有登录');
-        return response;
+        ctx.body = response;
     }
 };
