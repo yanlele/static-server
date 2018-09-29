@@ -9,6 +9,11 @@ function hasErrors(fieldsError) {
 }
 
 class UserSignIn extends Component {
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
     componentDidMount() {
         // To disabled submit button at the beginning.
         this.props.form.validateFields();
@@ -29,7 +34,7 @@ class UserSignIn extends Component {
                                 help={userNameError || ''}
                             >
                                 {getFieldDecorator('userName', {
-                                    rules: [{required: true, message: 'Please input your username!'}],
+                                    rules: [{required: true, message: '用输入用户名!'}],
                                 })(
                                     <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
                                            placeholder="Username"/>
@@ -44,7 +49,7 @@ class UserSignIn extends Component {
                                 help={passwordError || ''}
                             >
                                 {getFieldDecorator('password', {
-                                    rules: [{required: true, message: 'Please input your Password!'}],
+                                    rules: [{required: true, message: '请输入密码!'}],
                                 })(
                                     <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
                                            type="password" placeholder="Password"/>
@@ -53,14 +58,24 @@ class UserSignIn extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col span={22} offset={1}>
+                        <Col span={22}
+                             offset={1}
+                             className="text-right"
+                        >
                             <FormItem>
                                 <Button
                                     type="primary"
                                     htmlType="submit"
                                     disabled={hasErrors(getFieldsError())}
                                 >
-                                    Log in
+                                    登录
+                                </Button>
+
+
+                                <Button
+                                    className="m-l-lg"
+                                >
+                                    注册
                                 </Button>
                             </FormItem>
                         </Col>
@@ -75,7 +90,7 @@ class UserSignIn extends Component {
         e.stopPropagation();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                console.log(values);
             }
         });
     }
