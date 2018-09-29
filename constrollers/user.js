@@ -34,11 +34,12 @@ module.exports = {
     async getUserInfo(ctx) {
         let currentUser = ctx.session;
         let response;
-        if(isObjEmpty(currentUser)) {
-            response = serverResponse.createSuccessMessage('', currentUser);
+        if(!isObjEmpty(currentUser)) {
+            response = serverResponse.createSuccessMessage('获取用户信息成功', currentUser);
             return ctx.body = response;
         }
-        response = serverResponse.createErrorMessage('登录事变或者没有登录');
+        response = serverResponse.createErrorMessage('获取登录信息失败');
+        ctx.logger.debug(response);
         ctx.body = response;
     }
 };
