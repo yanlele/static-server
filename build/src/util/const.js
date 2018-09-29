@@ -111,14 +111,14 @@ export const dataFormatMinute = 'YYYY-MM-DD HH:mm';
 export const $app = document.getElementById('app');
 
 // 统一端口
-export const protocol = window.location.protocol;
+
 
 // 七牛上传配置
 
 // 上传限制
 export const uploadSize = 2 * 1024 * 1024; //最大上传文件大小(KB)
 // 上传地址
-export const uploadUrl = protocol === 'https:' ? 'https://up.qbox.me' : 'http://upload.qiniu.com';
+
 
 // 简介的最长数据
 export const simpleListSize = 3;

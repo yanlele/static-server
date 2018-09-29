@@ -17,7 +17,7 @@ const THIRTY_MINTUES = 30 * 60 * 1000;
 onError(app);
 
 // session存储配置
-const sessionMysqlConfig= {
+const sessionMysqlConfig = {
     user: config.database.USERNAME,
     password: config.database.PASSWORD,
     database: config.database.DATABASE,

@@ -1,3 +1,5 @@
-import {fetch as fetchPolyfill} from 'whatwg-fetch'
+import axios from 'axios';
 
-window.fetch = fetch;
+
+
+window.axios = axios;

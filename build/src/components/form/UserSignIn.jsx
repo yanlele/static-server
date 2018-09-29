@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Form, Icon, Input, Button, Row, Col} from 'antd';
+import PropTypes from 'prop-types';
 
 const FormItem = Form.Item;
 
@@ -36,8 +37,9 @@ class UserSignIn extends Component {
                                 {getFieldDecorator('userName', {
                                     rules: [{required: true, message: '用输入用户名!'}],
                                 })(
-                                    <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                           placeholder="用户名"/>
+                                    <Input
+                                        prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                        placeholder="用户名"/>
                                 )}
                             </FormItem>
                         </Col>
@@ -51,16 +53,18 @@ class UserSignIn extends Component {
                                 {getFieldDecorator('password', {
                                     rules: [{required: true, message: '请输入密码!'}],
                                 })(
-                                    <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                           type="password" placeholder="密码"/>
+                                    <Input
+                                        prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                        type="password" placeholder="密码"/>
                                 )}
                             </FormItem>
                         </Col>
                     </Row>
                     <Row>
-                        <Col span={22}
-                             offset={1}
-                             className="text-right"
+                        <Col
+                            span={22}
+                            offset={1}
+                            className="text-right"
                         >
                             <FormItem>
                                 <Button
@@ -82,18 +86,22 @@ class UserSignIn extends Component {
                     </Row>
                 </Form>
             </div>
-        )
+        );
     }
 
     handleSubmit(e) {
         e.preventDefault();
         e.stopPropagation();
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields((err) => {
             if (!err) {
-                console.log(values);
+                // console.log(values);
             }
         });
     }
 }
+
+UserSignIn.propTypes = {
+    form: PropTypes.obj
+};
 
 export default Form.create()(UserSignIn);
