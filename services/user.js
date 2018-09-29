@@ -55,6 +55,17 @@ class UserService {
         }
         return serverResponse.createErrorMessage("注册失败");
     }
+
+    // 实时校验检测业务逻辑
+    static async checkValid(checkItem ,type) {
+        let responseCount;
+        if(type === 'username') {
+            responseCount = await userModel.checkUserName(checkItem);
+        }
+        if(type === 'email') {
+
+        }
+    }
 }
 
 
