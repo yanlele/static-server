@@ -5,5 +5,7 @@ router.prefix('/api/user');
 const routers = router
     .post('/signIn/', userController.signIn)
     .post('/signUp/', userController.signUp)
+    .get('/singOut/', userController.signOut)
+    .get('/get_userInfo', userController.getUserInfo)
 
 module.exports = routers;

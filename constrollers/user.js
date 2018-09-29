@@ -1,5 +1,6 @@
 const userService = require('./../services/user');
 const userCode = require('./../enums/user');
+const serverResponse = require('./../utils/serverResponse');
 
 module.exports = {
     // 登录接口
@@ -17,5 +18,26 @@ module.exports = {
     async signUp(ctx) {
         let {username, password, confirmPassword, email} = ctx.request.body;
         ctx.body = await userService.signUp(username, password, confirmPassword, email);
+    },
+
+    // 退出登录
+    async signOut(ctx) {
+        let currentUser = ctx.session;
+        if(currentUser) {
+            ctx.session = ''
+        }
+        ctx.body = serverResponse.createSuccessMessage('退出登录成功')
+    },
+
+    // 登录状态下获取用户信息
+    async getUserInfo(ctx) {
+        let currentUser = ctx.session;
+        let response;
+        if(currentUser) {
+            response = serverResponse.createSuccessMessage('', currentUser);
+            return response;
+        }
+        response = serverResponse.createErrorMessage('登录事变或者没有登录');
+        return response;
     }
 };
