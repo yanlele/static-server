@@ -12,13 +12,13 @@ module.exports = {
         if(response.success) {
             ctx.session = response.data;
         }
-        ctx.body = response;
+        return ctx.body = response;
     },
 
     // 注册接口
     async signUp(ctx) {
         let {username, password, confirmPassword, email} = ctx.request.body;
-        ctx.body = await userService.signUp(username, password, confirmPassword, email);
+        return ctx.body = await userService.signUp(username, password, confirmPassword, email);
     },
 
     // 退出登录
@@ -27,7 +27,7 @@ module.exports = {
         if(currentUser) {
             ctx.session = ''
         }
-        ctx.body = serverResponse.createSuccessMessage('退出登录成功')
+        return ctx.body = serverResponse.createSuccessMessage('退出登录成功')
     },
 
     // 登录状态下获取用户信息
@@ -40,6 +40,18 @@ module.exports = {
         }
         response = serverResponse.createErrorMessage('获取登录信息失败');
         ctx.logger.debug(response);
-        ctx.body = response;
+        return ctx.body = response;
+    },
+
+    // 实时校验
+    async checkValid(ctx) {
+        let {checkItem, type} = ctx.request.param;
+        let response;
+        if(!checkItem || !type) {
+            response = serverResponse.createErrorMessage('校验对象参数传递有误');
+            return ctx.body = response;
+        }
+
+
     }
 };
