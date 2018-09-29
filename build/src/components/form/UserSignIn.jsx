@@ -37,7 +37,7 @@ class UserSignIn extends Component {
                                     rules: [{required: true, message: '用输入用户名!'}],
                                 })(
                                     <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                           placeholder="Username"/>
+                                           placeholder="用户名"/>
                                 )}
                             </FormItem>
                         </Col>
@@ -52,7 +52,7 @@ class UserSignIn extends Component {
                                     rules: [{required: true, message: '请输入密码!'}],
                                 })(
                                     <Input prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                                           type="password" placeholder="Password"/>
+                                           type="password" placeholder="密码"/>
                                 )}
                             </FormItem>
                         </Col>

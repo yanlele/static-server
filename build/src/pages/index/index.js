@@ -4,7 +4,6 @@ import {Component} from 'react';
 import {connect} from 'dva';
 
 import UserSignIn from '../../components/form/UserSignIn.jsx'
-import MouseMoveAction from '../../components/view/mouse_move_action.jsx';
 
 function mapStateToProps(state) {
     return {
@@ -23,20 +22,18 @@ class Index extends Component {
     render() {
         return (
             <div className={styles.home_background_img}>
-                <MouseMoveAction>
-                    <Row className="pt15_ratio">
-                        <Col span={10} offset={7}>
-                            <Card
-                                title="请登录"
-                                style={{
-                                    width: '100%',
-                                }}
-                            >
-                                <UserSignIn/>
-                            </Card>
-                        </Col>
-                    </Row>
-                </MouseMoveAction>
+                <Row className="pt15_ratio">
+                    <Col span={10} offset={7}>
+                        <Card
+                            title="请登录"
+                            style={{
+                                width: '100%',
+                            }}
+                        >
+                            <UserSignIn/>
+                        </Card>
+                    </Col>
+                </Row>
             </div>
         );
     }
