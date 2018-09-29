@@ -33,6 +33,7 @@ export default class Demo7 extends Component{
     };
 
     render() {
+
         const {mouse: [mouseX, mouseY], now} = this.state;
         const styles = mouseX == null ? [] : [{
             key: now,
@@ -44,27 +45,29 @@ export default class Demo7 extends Component{
             }
         }];
         return (
-            <TransitionMotion willLeave={this.willLeave} styles={styles}>
-                {circles =>
-                    <div
-                        onMouseMove={this.handleMouseMove}
-                        onTouchMove={this.handleTouchMove}
-                        className={style.demo7}>
-                        {circles.map(({key, style: {opacity, scale, x, y}}) =>
-                            <div
-                                key={key}
-                                className={style.demo7_ball}
-                                style={{
-                                    opacity: opacity,
-                                    scale: scale,
-                                    transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`,
-                                    WebkitTransform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`,
-                                }}>
-                            </div>
-                        )}
-                    </div>
-                }
-            </TransitionMotion>
+            <div>
+                <TransitionMotion willLeave={this.willLeave} styles={styles}>
+                    {circles =>
+                        <div
+                            onMouseMove={this.handleMouseMove}
+                            onTouchMove={this.handleTouchMove}
+                            className={style.demo7}>
+                            {circles.map(({key, style: {opacity, scale, x, y}}) =>
+                                <div
+                                    key={key}
+                                    className={style.demo7_ball}
+                                    style={{
+                                        opacity: opacity,
+                                        scale: scale,
+                                        transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`,
+                                        WebkitTransform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`,
+                                    }}>
+                                </div>
+                            )}
+                        </div>
+                    }
+                </TransitionMotion>
+            </div>
         );
     };
 }
