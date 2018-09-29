@@ -3,6 +3,8 @@ import {Card, Row, Col} from 'antd';
 import {Component} from 'react';
 import {connect} from 'dva';
 
+import UserSignIn from '../../components/form/UserSignIn.jsx'
+
 function mapStateToProps(state) {
     return {
         login: state.global.login,
@@ -28,7 +30,7 @@ class Index extends Component {
                                 width: '100%',
                             }}
                         >
-                            <p>Card content</p>
+                            <UserSignIn/>
                         </Card>
                     </Col>
                 </Row>
