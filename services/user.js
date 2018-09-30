@@ -1,5 +1,6 @@
 const serverResponse = require('./../utils/serverResponse');
 const userModel = require('./../models/user');
+const {uuid} = require('../utils/index');
 
 class UserService {
     static async signIn(username, password) {
@@ -84,6 +85,18 @@ class UserService {
             return serverResponse.createSuccessMessage('查询问题成功', question);
         }
         return serverResponse.createErrorMessage('找回密码的为是空的');
+    }
+
+    // 验证答案的正确性
+    static async checkAnswer(username, question, answer) {
+        let resultCount = userModel.checkAnswer(username, question, answer);
+        if(!resultCount) {
+            return serverResponse.createErrorMessage('答案错误');
+        }
+        // 如果答案正确
+        return serverResponse.createSuccessMessage('答案正确',  {
+            forgetToken: uuid()
+        })
     }
 }
 

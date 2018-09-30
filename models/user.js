@@ -35,12 +35,17 @@ class User {
     }
 
     // 通过用户名查询问题
-
     static async selectQuestionByUsername(username) {
         let sql = `select question from mmall_user where username=?`;
-        let result = query(sql, [username]);
+        let result =await query(sql, [username]);
         result = checkModelResult(result);
         return result;
+    }
+
+    // 验证答案的正确性
+    static async checkAnswer(username, question, answer) {
+        let sql = `select count(1) from mmall_user where username=? and question=? and answer=?`;
+        return await query(sql, [username, question, answer]);
     }
 }
 

@@ -9,5 +9,7 @@ const routers = router
     .get('/get-userInfo/', UserController.getUserInfo)
     .get('/check-valid/', UserController.checkValid)
     .get('/forget-get-question/', UserController.forgetGetQuestion)
+    .get('/checkAnswer/', UserController.forgetCheckAnswer)
+
 
 module.exports = routers;

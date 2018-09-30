@@ -35,7 +35,7 @@ class UserController {
 
     // 实时校验
     static async checkValid(ctx) {
-        let {checkItem, type} = ctx.request.param;
+        let {checkItem, type} = ctx.request.query;
         let response;
         if(!checkItem || !type) {
             response = serverResponse.createErrorMessage('校验对象参数传递有误');
@@ -60,8 +60,38 @@ class UserController {
 
 
     // 忘记密码 获取问题
-    static async forgetGetQuestion(username) {
-        return userService.selectQuestion(username);
+    static async forgetGetQuestion(ctx) {
+        let {username} = ctx.request.query;
+        if(!username) {
+            return ctx.body = serverResponse.createErrorMessage('错误的用户名信息')
+        }
+        return ctx.body = userService.selectQuestion(username);
+    }
+
+    // 验证问题答案 ， 如果问题答案通过给一个全局唯一识别码
+    static async forgetCheckAnswer(ctx) {
+        let {username, question, answer} = ctx.request.query;
+        if(!username && !question && !answer) {
+            return serverResponse.createErrorMessage('传递参数错误');
+        }
+        let response = userService.checkAnswer(username, question, answer);
+
+
+        // 验证登录是否失效
+        let currentUser = ctx.session;
+        if(isObjEmpty(currentUser)) {
+            return ctx.body = serverResponse.createErrorMessage('当前登录用户失效， 请重新登录')
+        }
+        // 如果返回正确
+        if(response.success) {
+            // 在session 中保存 forgetToken;
+            Object.assign(currentUser,  {
+                forgetToken: response.forgetToken
+            });
+            ctx.session = currentUser;
+        }
+        // 返回 forgetToken
+        return ctx.body = response;
     }
 }
 
