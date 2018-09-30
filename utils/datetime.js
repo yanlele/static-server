@@ -61,6 +61,6 @@ const datatime = {
 
 
 
-}
+};
 
-module.exports = datatime
+module.exports = datatime;
