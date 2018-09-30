@@ -15,11 +15,6 @@ class UserController {
         return ctx.body = response;
     }
 
-    // 注册接口
-    static async signUp(ctx) {
-        let {username, password, confirmPassword, email} = ctx.request.body;
-        return ctx.body = await userService.signUp(username, password, confirmPassword, email);
-    }
 
     // 退出登录
     static async signOut(ctx) {
@@ -28,6 +23,13 @@ class UserController {
             ctx.session = ''
         }
         return ctx.body = serverResponse.createSuccessMessage('退出登录成功')
+    }
+
+
+    // 注册接口
+    static async signUp(ctx) {
+        let {username, password, confirmPassword, email} = ctx.request.body;
+        return ctx.body = await userService.signUp(username, password, confirmPassword, email);
     }
 
 
@@ -56,6 +58,8 @@ class UserController {
         return ctx.body = response;
     }
 
+
+    // 忘记密码 获取问题
 }
 
 module.exports = UserController;
