@@ -63,8 +63,14 @@ class UserService {
             responseCount = await userModel.checkUserName(checkItem);
         }
         if(type === 'email') {
-
+            responseCount = await userModel.checkUserEmail(checkItem);
         }
+
+        if(!responseCount) {
+            return serverResponse.createErrorMessage('验证失败');
+        }
+
+        return serverResponse.createSuccessMessage('验证成功');
     }
 }
 

@@ -51,7 +51,6 @@ module.exports = {
             response = serverResponse.createErrorMessage('校验对象参数传递有误');
             return ctx.body = response;
         }
-        userService.checkValid(checkItem, type);
-
+        return ctx.body = userService.checkValid(checkItem, type);
     }
 };
