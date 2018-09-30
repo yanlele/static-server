@@ -1,11 +1,12 @@
 const router = require('koa-router')();
-const userController = require('../constrollers/user');
+const UserController = require('../constrollers/user');
 
 router.prefix('/api/user');
 const routers = router
-    .post('/signIn/', userController.signIn)
-    .post('/signUp/', userController.signUp)
-    .get('/signOut/', userController.signOut)
-    .get('/get_userInfo', userController.getUserInfo)
+    .post('/signIn/', UserController.signIn)
+    .post('/signUp/', UserController.signUp)
+    .get('/signOut/', UserController.signOut)
+    .get('/get-userInfo/', UserController.getUserInfo)
+    .get('/check-valid/', UserController.checkValid)
 
 module.exports = routers;
