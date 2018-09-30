@@ -98,6 +98,20 @@ class UserService {
             forgetToken: uuid()
         })
     }
+
+    // 通过token重置密码
+    static async forgetResetPassword(username, passwordNew) {
+        let responseCount = this.checkValid(username, 'username');
+        if(!responseCount) {
+            return serverResponse.createErrorMessage('用户名不存在');
+        }
+
+        let response =await userModel.updatePasswordByUsername(username, passwordNew);
+        if(!responseCount.affectedRows) {
+            return serverResponse.createErrorMessage('更新密码失败');
+        }
+        return serverResponse.createSuccessMessage('更新密码成功');
+    }
 }
 
 

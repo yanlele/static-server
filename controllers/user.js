@@ -101,17 +101,17 @@ class UserController {
         let currentUser = ctx.session;
         let checkLoginUsername = checkLoginUsername(currentUser, username);
         if(!username && !passwordNew && !forgetToken) {
-            return ctx.body =  serverResponse.createErrorMessage('传递参数错误');
+            return ctx.body = serverResponse.createErrorMessage('传递参数错误');
         }
         if(!checkLoginUsername.success) {
-            return checkLoginUsername;
+            return ctx.body = checkLoginUsername;
         }
         if(forgetToken !== currentUser.forgetToken) {
             return ctx.body = serverResponse.createErrorMessage('忘记密码的token验证错误');
         }
 
         // 如果以上验证都通过了，可以允许修改密码了 因为username 是唯一标志，可以就那username去修改。
-
+        return ctx.body = await userService.forgetResetPassword(username, passwordNew);
     }
 }
 

@@ -47,6 +47,12 @@ class User {
         let sql = `select count(1) from mmall_user where username=? and question=? and answer=?`;
         return await query(sql, [username, question, answer]);
     }
+
+    // 更新用户密码
+    static async updatePasswordByUsername(username, password) {
+        let sql = `update mmall_user set password=? where username = ?`;
+        return await query(sql, [username, password]);
+    }
 }
 
 
