@@ -12,7 +12,7 @@ const path = require('path');
 const pkg = require('./package.json');
 
 const routing = require('./routers/index');
-const THIRTY_MINTUES = 30 * 60 * 1000;
+const THIRTY_MINTUES =12 * 60 * 60 * 1000;
 // 处理错误
 onError(app);
 

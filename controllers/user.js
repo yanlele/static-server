@@ -1,7 +1,8 @@
 const {isObjEmpty} = require('../build/src/util/tool');
-const userService = require('./../services/user');
-const userCode = require('./../enums/user');
-const serverResponse = require('./../utils/serverResponse');
+const userService = require('../services/user');
+const userCode = require('../enums/user');
+const serverResponse = require('../utils/serverResponse');
+const {checkLoginUsername} = require('../utils/controllerUtil');
 
 class UserController {
     // 登录接口
@@ -41,7 +42,7 @@ class UserController {
             response = serverResponse.createErrorMessage('校验对象参数传递有误');
             return ctx.body = response;
         }
-        return ctx.body = userService.checkValid(checkItem, type);
+        return ctx.body =await userService.checkValid(checkItem, type);
     }
 
 
@@ -65,16 +66,16 @@ class UserController {
         if(!username) {
             return ctx.body = serverResponse.createErrorMessage('错误的用户名信息')
         }
-        return ctx.body = userService.selectQuestion(username);
+        return ctx.body =await userService.selectQuestion(username);
     }
 
     // 验证问题答案 ， 如果问题答案通过给一个全局唯一识别码
     static async forgetCheckAnswer(ctx) {
         let {username, question, answer} = ctx.request.query;
         if(!username && !question && !answer) {
-            return serverResponse.createErrorMessage('传递参数错误');
+            return ctx.body = serverResponse.createErrorMessage('传递参数错误');
         }
-        let response = userService.checkAnswer(username, question, answer);
+        let response =await userService.checkAnswer(username, question, answer);
 
 
         // 验证登录是否失效
@@ -92,6 +93,25 @@ class UserController {
         }
         // 返回 forgetToken
         return ctx.body = response;
+    }
+
+    // 通过拿到的token重置密码
+    static async forgetRestPassword(ctx) {
+        let {username, passwordNew, forgetToken} = ctx.request.body;
+        let currentUser = ctx.session;
+        let checkLoginUsername = checkLoginUsername(currentUser, username);
+        if(!username && !passwordNew && !forgetToken) {
+            return ctx.body =  serverResponse.createErrorMessage('传递参数错误');
+        }
+        if(!checkLoginUsername.success) {
+            return checkLoginUsername;
+        }
+        if(forgetToken !== currentUser.forgetToken) {
+            return ctx.body = serverResponse.createErrorMessage('忘记密码的token验证错误');
+        }
+
+        // 如果以上验证都通过了，可以允许修改密码了 因为username 是唯一标志，可以就那username去修改。
+
     }
 }
 
