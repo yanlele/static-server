@@ -1,5 +1,5 @@
 const router = require('koa-router')();
-const UserController = require('../constrollers/user');
+const UserController = require('../controllers/user');
 
 router.prefix('/api/user');
 const routers = router
@@ -8,5 +8,6 @@ const routers = router
     .get('/signOut/', UserController.signOut)
     .get('/get-userInfo/', UserController.getUserInfo)
     .get('/check-valid/', UserController.checkValid)
+    .get('/forget-get-question/', UserController.forgetGetQuestion)
 
 module.exports = routers;

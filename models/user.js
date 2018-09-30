@@ -33,6 +33,15 @@ class User {
         let sql = `select count(1) from where email=?`;
         return await query(sql, [email]);
     }
+
+    // 通过用户名查询问题
+
+    static async selectQuestionByUsername(username) {
+        let sql = `select question from mmall_user where username=?`;
+        let result = query(sql, [username]);
+        result = checkModelResult(result);
+        return result;
+    }
 }
 
 

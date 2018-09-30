@@ -60,6 +60,9 @@ class UserController {
 
 
     // 忘记密码 获取问题
+    static async forgetGetQuestion(username) {
+        return userService.selectQuestion(username);
+    }
 }
 
 module.exports = UserController;

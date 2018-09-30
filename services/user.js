@@ -72,6 +72,19 @@ class UserService {
 
         return serverResponse.createSuccessMessage('验证成功');
     }
+
+    // 通过用户名获取问题 用户名是唯一的
+    static async selectQuestion(username) {
+        let responseCount = this.checkValid(username, 'username');
+        if(!responseCount) {
+            return serverResponse.createErrorMessage('用户名不存在');
+        }
+        let question = userModel.selectQuestionByUsername(username);
+        if(question!==null && question!== '') {
+            return serverResponse.createSuccessMessage('查询问题成功', question);
+        }
+        return serverResponse.createErrorMessage('找回密码的为是空的');
+    }
 }
 
 
