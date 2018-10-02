@@ -6,11 +6,12 @@ module.exports = {
 
     async setSession(ctx) {
         let session = ctx.session;
+        // let session = this.session;
         let test = {
             name: 'yanle',
             age: 25
         };
-        session =  test
+        session.test2 = test;
         return ctx.body = {
             message: '成功'
         }

@@ -5,7 +5,7 @@ const json = require('koa-json');
 const onError = require('koa-onerror');
 const bodyParser = require('koa-bodyparser');
 const logger = require('koa-logs-middleware');
-const session = require('koa-session-minimal');
+const session = require('koa-generic-session');
 const redisStore = require('koa-redis');
 const config = require('./config');
 const path = require('path');
@@ -27,16 +27,13 @@ const sessionMysqlConfig = {
 const redisConfig = {
     port: config.redis.PORT,
     host: config.redis.HOST,
-    db: config.redis.DB
+    db: config.redis.DB,
 }
 
 // 配置session 中间件
+app.keys = ['keys'];            // redis cookies 签名，必须要
 app.use(session({
-    key: 'USER_SID',
-    store: redisStore(redisConfig),
-    cookie: {
-        maxage: THIRTY_MINTUES
-    }
+    store: redisStore(redisConfig)
 }));
 
 // 解析body
