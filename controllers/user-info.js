@@ -10,7 +10,7 @@ module.exports = {
             name: 'yanle',
             age: 25
         };
-        session.set('test', test)
+        session =  test
         return ctx.body = {
             message: '成功'
         }
@@ -19,8 +19,7 @@ module.exports = {
 
     async getSession(ctx) {
         let session = ctx.session;
-        let result =  session.get('test');
-        return ctx.body = result;
+        return ctx.body = session;
     },
 
 
