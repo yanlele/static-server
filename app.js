@@ -6,7 +6,7 @@ const onError = require('koa-onerror');
 const bodyParser = require('koa-bodyparser');
 const logger = require('koa-logs-middleware');
 const session = require('koa-session-minimal');
-const mysqlStore = require('koa-mysql-session');
+const redisStore = require('koa-redis');
 const config = require('./config');
 const path = require('path');
 const pkg = require('./package.json');
@@ -24,10 +24,16 @@ const sessionMysqlConfig = {
     host: config.database.HOST,
 };
 
+const redisConfig = {
+    port: config.redis.PORT,
+    host: config.redis.HOST,
+    db: config.redis.DB
+}
+
 // 配置session 中间件
 app.use(session({
     key: 'USER_SID',
-    store: new mysqlStore(sessionMysqlConfig),
+    store: redisStore(redisConfig),
     cookie: {
         maxage: THIRTY_MINTUES
     }

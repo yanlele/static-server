@@ -7,6 +7,11 @@ const config = {
         PORT: '3306',
         HOST: 'localhost'
     },
+    redis: {
+        PORT: '6379',
+        HOST: '127.0.0.1',
+        DB: 1
+    },
     mock: false
 };
 

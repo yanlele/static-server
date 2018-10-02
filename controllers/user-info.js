@@ -3,6 +3,28 @@ const userCode = require('./../enums/user')
 
 module.exports = {
 
+
+    async setSession(ctx) {
+        let session = ctx.session;
+        let test = {
+            name: 'yanle',
+            age: 25
+        };
+        session.set('test', test)
+        return ctx.body = {
+            message: '成功'
+        }
+    },
+
+
+    async getSession(ctx) {
+        let session = ctx.session;
+        let result =  session.get('test');
+        return ctx.body = result;
+    },
+
+
+
     /**
      * 登录操作
      * @param  {obejct} ctx 上下文对象

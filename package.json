@@ -27,6 +27,7 @@
     "koa-logs-middleware": "^0.1.0",
     "koa-mysql-session": "^0.0.2",
     "koa-onerror": "^1.2.1",
+    "koa-redis": "^3.1.2",
     "koa-router": "^7.1.1",
     "koa-session-minimal": "^3.0.4",
     "koa-static": "^3.0.0",
