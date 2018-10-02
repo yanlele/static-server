@@ -9,9 +9,9 @@ module.exports = {
         // let session = this.session;
         let test = {
             name: 'yanle',
-            age: 25
+            age: 26
         };
-        session.test2 = test;
+        session.setSession = test;
         return ctx.body = {
             message: '成功'
         }

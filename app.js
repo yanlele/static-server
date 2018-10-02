@@ -28,10 +28,11 @@ const redisConfig = {
     port: config.redis.PORT,
     host: config.redis.HOST,
     db: config.redis.DB,
-}
+    ttl: 1000 * 60 * 60 ,               // 失效时间
+};
 
 // 配置session 中间件
-app.keys = ['keys'];            // redis cookies 签名，必须要
+app.keys = ['keys', 'keyskeys'];            // redis cookies 签名，必须要
 app.use(session({
     store: redisStore(redisConfig)
 }));
