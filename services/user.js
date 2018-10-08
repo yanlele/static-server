@@ -112,6 +112,11 @@ class UserService {
         }
         return serverResponse.createSuccessMessage('更新密码成功');
     }
+
+    // 登录状态修改密码
+    static async resetPassword(passwordOld, passwordNew, currentUser){
+
+    }
 }
 
 

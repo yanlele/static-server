@@ -2,7 +2,7 @@ const {isObjEmpty} = require('../build/src/util/tool');
 const userService = require('../services/user');
 const userCode = require('../enums/user');
 const serverResponse = require('../utils/serverResponse');
-const {checkLoginUsername} = require('../utils/controllerUtil');
+const {checkLoginUsername, checkLogin} = require('../utils/controllerUtil');
 
 class UserController {
     // 登录接口
@@ -112,6 +112,23 @@ class UserController {
 
         // 如果以上验证都通过了，可以允许修改密码了 因为username 是唯一标志，可以就那username去修改。
         return ctx.body = await userService.forgetResetPassword(username, passwordNew);
+    }
+
+    // 登录张台下的重置密码
+    static async resetPassword(ctx) {
+        let {passwordOld, passwordNew} = ctx.request.body;
+        let currentUser = ctx.session;
+
+        if(!passwordNew || !passwordOld) {
+            return serverResponse.createErrorMessage('参数错误');
+        }
+
+        let response = checkLogin(currentUser);
+        if(!response.success) {
+            return ctx.body = response;
+        }
+
+        return await userService.resetPassword(passwordOld, passwordNew, currentUser);
     }
 }
 

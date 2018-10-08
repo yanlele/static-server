@@ -13,6 +13,13 @@ class ControllerUtil {
 
         return serverResponse.createSuccessMessage('校验成功');
     }
+
+    static checkLogin(currentUser) {
+        if(isObjEmpty(currentUser)) {
+            return serverResponse.createErrorMessage('当前用户没有登录，请重新登录');
+        }
+        return serverResponse.createSuccessMessage('校验成功');
+    }
 }
 
 
